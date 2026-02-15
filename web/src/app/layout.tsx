@@ -5,6 +5,8 @@ import "./globals.css";
 // import CursorHandler from "@/components/CursorHandler";
 // import { PortalProvider } from "@/context/PortalContext";
 import Navbar from "@/components/Navbar";
+import { ClickedProvider } from "@/context/ClickedProvider";
+import { ThemeProvider } from "@/context/ThemeProvider";
 // import { ThemeProvider } from "@/context/ThemeProvider";
 
 const geistSans = Geist({
@@ -29,21 +31,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      {/* <ThemeProvider> */}
-        <body className="antialiased">
-          <div className="text-foreground min-h-screen font-serif flex flex-col justify-between">
-            <Navbar />
-            <div className="h-8"/>
-              {/* <PortalProvider> */}
-                {/* <CursorHandler> */}
-                  {/* <PortalScene /> */}
-                  <main>{children}</main>
-                {/* </CursorHandler> */}
-              {/* </PortalProvider> */}
-            <div className="h-24"/>
-          </div>
-        </body>
-      {/* </ThemeProvider> */}
+      <ThemeProvider>
+        <ClickedProvider>
+          <body className="antialiased">
+            <div className="text-foreground min-h-screen font-serif flex flex-col justify-between">
+              <Navbar />
+              <div className="h-8"/>
+                {/* <PortalProvider> */}
+                  {/* <CursorHandler> */}
+                    {/* <PortalScene /> */}
+                    <main>{children}</main>
+                  {/* </CursorHandler> */}
+                {/* </PortalProvider> */}
+              <div className="h-24"/>
+            </div>
+          </body>
+        </ClickedProvider>
+      </ThemeProvider>
     </html>
   );
 }

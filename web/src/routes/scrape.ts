@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
     const snippets: SnippetT[] = parseResult.data.map((snippet) => {
       const { geohash, ...rest } = snippet;
 
-      const computedGeohash = ngeohash.encode(snippet.lat, snippet.long);
+      const computedGeohash = ngeohash.encode(snippet.latitude, snippet.longitude);
 
       return {
         ...rest,
