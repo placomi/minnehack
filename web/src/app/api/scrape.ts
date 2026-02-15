@@ -1,4 +1,4 @@
-import { Snippet, SnippetT } from "@/src/types/Snippet";
+import { Snippet, type SnippetT } from "@/src/types/Snippet";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
