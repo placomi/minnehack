@@ -9,31 +9,33 @@ import Image from "next/image";
 export default function Page() {
   const { isLightMode } = useTheme();
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen">
-      <h1 className="text-3xl md:text-5xl font-bold mb-6">
-        Kintsugi
-      </h1>
-      <h2>
-        Healing starts with seeing.
-      </h2>
-        <p className="max-w-2xl text-gray-600 text-base md:text-lg leading-relaxed">
-          
+    <div className="flex min-h-screen">
+      {/* Left side - Text */}
+      <div className="flex-1 flex flex-col justify-center items-start px-8 md:px-16 lg:px-24">
+        <h1 className="text-5xl md:text-7xl font-bold mb-6">
+          Kintsugi
+        </h1>
+        <h2 className="text-2xl md:text-4xl mb-4">
+          Healing starts with seeing.
+        </h2>
+        <p className="max-w-2xl text-gray-600 text-lg md:text-xl leading-relaxed">
+
         </p>
-      <div className="w-64 h-64 md:w-80 md:h-80">
+        <p className="max-w-2xl text-gray-600 text-lg md:text-xl leading-relaxed">
+          {"Kintsugi is the Japanese art of mending broken pottery with gold. It doesn't hide cracks. It highlights them."}
+        </p>
+      </div>
+
+      {/* Right side - Image (25% off screen) */}
+      <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-256 lg:h-256 self-center" style={{ marginRight: "-20%" }}>
         <Image
-          src={isLightMode ? "/images/logo_colored.png" : "/images/logo_light.png"}
+          src={isLightMode ? "/images/upscaled_dark.png" : "/images/upscaled_light.png"}
           alt="Logo"
-          width={400}
-          height={400}
+          fill
+          style={{ objectFit: "cover" }}
           priority
         />
       </div>
-      <p>
-        Kintsugi is the Japanese art of mending broken pottery with gold.
-It doesn’t hide cracks.
-It highlights them.
-
-      </p>
     </div>
   );
 }

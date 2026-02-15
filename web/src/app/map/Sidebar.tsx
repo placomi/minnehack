@@ -22,11 +22,11 @@ export default function Sidebar() {
         {snippets.map((snippet: SnippetT) => (
           <div key={snippet.id} className="bg-[var(--background)]">
             <button
-              onClick={() => toggleItem(snippet.summary)}
+              onClick={() => toggleItem(snippet.id)}
               className="w-full px-4 py-2 flex items-center justify-between hover:bg-gray-50 transition-colors"
             >
               <span className="text-s font-medium text-[var(--foreground)] text-left truncate">
-                <Marquee text={snippet.id}/>
+                <Marquee text={snippet.summary}/>
               </span>
             </button>
             
