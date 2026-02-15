@@ -1,5 +1,7 @@
 package-lock.json
 node_modules
 .env*
+__pycache__/
 .DS_STORE
 .next/
+venv/
