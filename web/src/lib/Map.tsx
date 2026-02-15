@@ -8,6 +8,7 @@ import {
   MapMouseEvent,
   useMap,
 } from "@vis.gl/react-google-maps";
+
 import { useMemo, useEffect } from "react";
 import { DeckProps } from "@deck.gl/core";
 import { GoogleMapsOverlay } from "@deck.gl/google-maps";
@@ -46,6 +47,7 @@ export default function MapComponent() {
       ],
     }),
   ];
+
   return (
     <APIProvider
       apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ""}
