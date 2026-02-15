@@ -1,5 +1,5 @@
 "use client";
-import MapComponent from "@/lib/Map";
+import MapComponent from "./Map";
 
 export default function Page() {
   return MapComponent();
