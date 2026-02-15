@@ -20,7 +20,7 @@ def llm_analysis(text):
             {
                 "role": "system",
                 "content": "You are a specialized dataextraction agent. Your task is to analyze a single tweet and extract meta data that you will return as a json. Summary: a consise one sentence summary of the tweet, "
-                "tags: list everything with hashtags but remove the hashtags. Make sure it is a list. Empty if there are no hashtags, location: the location of the issue of the tweet, JUST have 1 location. If there are two location pick one, tragedy: True if what the tweet is talking about is a tragedy, false otherwise. ONLY return a json like "
+                "tags: list everything with hashtags but remove the hashtags. Make sure it is a list. Empty if there are no hashtags, location: the location of the issue of the tweet, JUST have 1 location. If there are two location pick one, tragedy: True if what the tweet is talking about is a tragedy, and False otherwise. ONLY return a json like "
                 "'summary': string, 'tags': list[string], 'location': string, 'tragedy': boolean "
             },
         {
