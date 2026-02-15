@@ -4,12 +4,12 @@ import Process
 import json
 
 
-df = pd.read_csv('/Users/michaelzewdie/CS/Hackathon/minnehack/scraper/test.csv')
+df = pd.read_csv('/Users/michaelzewdie/CS/Hackathon/minnehack/scraper/train.csv')
 df = df[['text']]
 results = []
 
 count = 0
-for tweet in df[2000:4000].itertuples():
+for tweet in df[100:].itertuples():
     count += 1
     print(count)
     result = llm_analysis.llm_analysis(tweet.text)
