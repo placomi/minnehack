@@ -29,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <ThemeProvider>
+      {/* <ThemeProvider> */}
         <body className="antialiased">
           <div className="text-foreground min-h-screen font-serif flex flex-col justify-between">
             <Navbar />
@@ -43,7 +43,7 @@ export default function RootLayout({
             <div className="h-24"/>
           </div>
         </body>
-      </ThemeProvider>
+      {/* </ThemeProvider> */}
     </html>
   );
 }

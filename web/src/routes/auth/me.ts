@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import UserRepository from '@/src/services/UserRepository';
+import UserRepository from '@/services/UserRepository';
 import jwt from 'jsonwebtoken';
 
 const router = Router();

@@ -4,11 +4,13 @@ import { useRouter } from "next/navigation";
 import ReactiveButton from "./common/ReactiveButton";
 import Toggle from "./common/Toggle";
 import { useState } from "react";
-import { useTheme } from "@/context/ThemeContext";
+// import { useTheme } from "@/context/ThemeContext";
 
 export default function Navbar() {
   const router = useRouter();
-  const { isLightMode, toggle } = useTheme();
+//   const { isLightMode, toggle } = useTheme();
+  const isLightMode = true;
+  const toggle = () => {};
 
   return (
     <header

@@ -2,7 +2,7 @@
 import { Router } from 'express';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import UserRepository, { type UserLookup } from '@/src/services/UserRepository';
+import UserRepository, { type UserLookup } from '@/services/UserRepository';
 
 const router = Router();
 

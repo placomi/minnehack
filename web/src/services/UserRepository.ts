@@ -5,8 +5,8 @@ import {
 } from "@aws-sdk/client-dynamodb";
 import { marshall, unmarshall } from "@aws-sdk/util-dynamodb";
 
-import { User, type UserT } from "@/src/types/User";
-import { Result } from "@/src/types/common/common";
+import { User, type UserT } from "@/types/User";
+import { Result } from "@/types/common/common";
 import { getDdbClient } from "../db/ddbClient";
 
 const USERS_TABLE_NAME = "USERS";

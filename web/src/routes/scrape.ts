@@ -1,5 +1,5 @@
-import SnippetRepository from "@/src/services/SnippetRepository";
-import { Snippet } from "@/src/types/Snippet";
+import SnippetRepository from "@/services/SnippetRepository";
+import { Snippet } from "@/types/Snippet";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 

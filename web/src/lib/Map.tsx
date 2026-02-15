@@ -13,7 +13,7 @@ import { useMemo, useEffect } from "react";
 import { DeckProps } from "@deck.gl/core";
 import { GoogleMapsOverlay } from "@deck.gl/google-maps";
 import { HeatmapLayer } from "@deck.gl/aggregation-layers";
-import { SnippetT } from "../types/Snippet.ts";
+import { SnippetT } from "@/types/Snippet";
 
 function DeckGLOverlay(props: DeckProps) {
   const map = useMap();
