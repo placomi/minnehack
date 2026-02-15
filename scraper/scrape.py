@@ -8,38 +8,36 @@ df = pd.read_csv('/Users/michaelzewdie/CS/Hackathon/minnehack/scraper/test.csv')
 df = df[['text']]
 results = []
 
-for tweet in df[0:5].itertuples():
+count = 0
+for tweet in df[484:1000].itertuples():
+    count += 1
+    print(count)
     result = llm_analysis.llm_analysis(tweet.text)
     raw = result['choices'][0]['message']['content']
+    print(raw)
+    if raw[3] == False:
+        raw[3] = 'tragedy'
     thejson = json.loads(raw)
+    if thejson.get('tragedy') == False:
+        thejson['tragedy'] = 'false'
     location = thejson['location']
     thejson['latitude'] = Process.latlong(location)[0]
     thejson['longitude'] = Process.latlong(location)[1]
     thejson['text'] = tweet.text
     results.append(thejson)
+    with open('', 'w') as file:
+        json.dump(results, file, indent=4)
 print(results)
 
 
 
-    
-# tweet4 = df[4:5]
-# text = df.text[4]
-# Id = tweet4.id
-# result = llm_analysis.llm_analysis(text)
-# raw = result['choices'][0]['message']['content']
-# thejson = json.loads(raw)
-# summary = thejson['summary']
-# location = thejson['location']
-# lat = Process.latlong(location)[0]
-# Long = Process.latlong(location)[1]
-# thejson['text'] = text
-# thejson['latitude'] = lat
-# thejson['longitude'] = Long
 
-# # snippet = Snippet.Snippet(timestamp=1.0,summary=summary, text=text, created_by='Me',verified=True,lat=lat,Long=Long,tags=tags)
-# # print(snippet)
-# pretty_json_string = json.dumps(thejson, indent=4)
-# print(pretty_json_string)
+
+
+
+
+    
+
 
 
 
