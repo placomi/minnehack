@@ -28,16 +28,81 @@ function DeckGLOverlay(props: DeckProps) {
   return null;
 }
 
+let snippetArray: SnippetT[];
+fetch("/cleantweetfinal.json")
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  })
+  .then((array) => {
+    snippetArray = array;
+  });
+
+
+function MapEvents() {
+  const map = useMap();
+
+  useEffect(() => {
+    if (!map) return;
+
+    let SIZE = 0.05;
+
+    const listener = map.addListener(
+      "click",
+      (ev: google.maps.MapMouseEvent) => {
+        const bounds = map.getBounds();
+        if (!bounds) return;
+
+        const domEvent = ev.domEvent as MouseEvent;
+        const mapDiv = map.getDiv();
+        const rect = mapDiv.getBoundingClientRect();
+
+        const pixelX = domEvent.clientX - rect.left;
+        const pixelY = domEvent.clientY - rect.top;
+        const ne = bounds.getNorthEast();
+        const sw = bounds.getSouthWest();
+        const lngPerPixel = (ne.lng() - sw.lng()) / rect.width;
+        const latPerPixel = (ne.lat() - sw.lat()) / rect.height;
+        const clickLng = sw.lng() + pixelX * lngPerPixel;
+        const clickLat = ne.lat() - pixelY * latPerPixel;
+
+        const size = SIZE * rect.width;
+        const lowerLong = clickLng - size * lngPerPixel;
+        const upperLong = clickLng + size * lngPerPixel;
+        const lowerLat = clickLat - size * latPerPixel;
+        const upperLat = clickLat + size * latPerPixel;
+
+        let targetSnippets: SnippetT[] = [];
+        for (const index in snippetArray) {
+          let snippet = snippetArray[index];
+          if (
+            snippet.longitude >= lowerLong &&
+            snippet.longitude <= upperLong &&
+            snippet.latitude >= lowerLat &&
+            snippet.latitude <= upperLat
+          ) {
+            targetSnippets.push(snippet);
+          }
+        }
+        console.log(targetSnippets);
+      },
+    );
+  }, [map]);
+  return null;
+}
+
 export default function MapComponent() {
   const layers = [
     new HeatmapLayer<SnippetT>({
       id: "HeatmapLayer",
       data: "/cleantweetfinal.json",
-	  pickable: true,
+      pickable: true,
       aggregation: "SUM",
       getPosition: (d: SnippetT) => [d.longitude, d.latitude],
       getWeight: (_) => 1, //start with unweighted, every entry gets a 1 weight.
-	  intensity: 2,
+      intensity: 2,
       radiusPixels: 35,
       //colorRange: [
       //  [254, 240, 217],
@@ -50,6 +115,7 @@ export default function MapComponent() {
     }),
   ];
 
+  let zoom = 3;
   return (
     <APIProvider
       apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ""}
@@ -66,22 +132,19 @@ export default function MapComponent() {
         mapTypeControl={false}
         clickableIcons={false}
         fullscreenControlOptions={{ position: ControlPosition.BOTTOM_RIGHT }}
-        onCameraChanged={(ev: MapCameraChangedEvent) =>
+        onCameraChanged={(ev: MapCameraChangedEvent) => {
           console.log(
             "camera changed:",
             ev.detail.center,
             "zoom:",
             ev.detail.zoom,
-          )
-        }
-        onClick={(ev: MapMouseEvent) => {
-          console.log(ev.detail.latLng?.lat, ev.detail.latLng?.lng);
-		  let snippets: SnippetT[];
-
+          );
+          zoom = ev.detail.zoom;
         }}
       >
         <DeckGLOverlay layers={layers} />
       </Map>
+      <MapEvents />
     </APIProvider>
   );
 }
