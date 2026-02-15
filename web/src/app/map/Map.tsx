@@ -32,20 +32,21 @@ export default function MapComponent() {
   const layers = [
     new HeatmapLayer<SnippetT>({
       id: "HeatmapLayer",
-      data: "/cleantweet.json",
+      data: "/cleantweetfinal.json",
 	  pickable: true,
       aggregation: "SUM",
-      getPosition: (d: SnippetT) => [d.long, d.lat],
+      getPosition: (d: SnippetT) => [d.longitude, d.latitude],
       getWeight: (_) => 1, //start with unweighted, every entry gets a 1 weight.
-      radiusPixels: 25,
-      colorRange: [
-        [254, 240, 217],
-        [253, 212, 158],
-        [253, 187, 132],
-        [252, 141, 89],
-        [227, 74, 51],
-        [179, 0, 0],
-      ],
+	  intensity: 2,
+      radiusPixels: 35,
+      //colorRange: [
+      //  [254, 240, 217],
+      //  [253, 212, 158],
+      //  [253, 187, 132],
+      //  [252, 141, 89],
+      //  [227, 74, 51],
+      //  [179, 0, 0],
+      //],
     }),
   ];
 
@@ -75,6 +76,8 @@ export default function MapComponent() {
         }
         onClick={(ev: MapMouseEvent) => {
           console.log(ev.detail.latLng?.lat, ev.detail.latLng?.lng);
+		  let snippets: SnippetT[];
+
         }}
       >
         <DeckGLOverlay layers={layers} />

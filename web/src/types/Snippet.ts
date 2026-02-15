@@ -18,8 +18,8 @@ export const Snippet = z.object({
   verified: z.boolean(),          //
   verified_by: z.string().optional(),
   verified_at: z.string().optional(),
-  lat: z.number(),                //
-  long: z.number(),               //
+  latitude: z.number(),                //
+  longitude: z.number(),               //
   link: z.string().optional(),    //
   radius: z.number(),
   tags: z.string().array()        //
