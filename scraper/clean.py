@@ -4,7 +4,7 @@ clean = []
 with open('/Users/michaelzewdie/CS/Hackathon/minnehack/scraper/tweets.json', 'r') as file:
     data = json.load(file)
 #tweet['tragedy'] != 'false' 
-for tweet in data[0:100]:
+for tweet in data:
     if tweet['tragedy'] != 'false' and tweet.get('latitude') != None and tweet.get('longitude') != None:
         clean.append(tweet)
 
