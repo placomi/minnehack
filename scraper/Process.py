@@ -1,0 +1,2 @@
+def GeoHash(text):
+    
