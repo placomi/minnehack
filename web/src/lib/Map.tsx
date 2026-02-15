@@ -57,8 +57,8 @@ export default function MapComponent() {
         style={{ width: "100vw", height: "100vh" }}
         mapTypeId="roadmap"
         tilt={0}
-        defaultZoom={13}
-        defaultCenter={{ lat: -33.860664, lng: 151.208138 }}
+        defaultZoom={3}
+        defaultCenter={{ lat: 0, lng: 0 }}
         mapId="254180ead19a7cfccf16bb37"
         streetViewControl={false}
         mapTypeControl={false}
