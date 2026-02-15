@@ -9,7 +9,7 @@ df = df[['text']]
 results = []
 
 count = 0
-for tweet in df[484:1000].itertuples():
+for tweet in df[1000:2000].itertuples():
     count += 1
     print(count)
     result = llm_analysis.llm_analysis(tweet.text)
@@ -25,7 +25,7 @@ for tweet in df[484:1000].itertuples():
     thejson['longitude'] = Process.latlong(location)[1]
     thejson['text'] = tweet.text
     results.append(thejson)
-    with open('', 'w') as file:
+    with open('/Users/michaelzewdie/CS/Hackathon/minnehack/scraper/tweets3.json', 'w') as file:
         json.dump(results, file, indent=4)
 print(results)
 
