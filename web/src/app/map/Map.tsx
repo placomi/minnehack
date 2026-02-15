@@ -10,7 +10,7 @@ import {
 } from "@vis.gl/react-google-maps";
 
 import { useMemo, useEffect } from "react";
-import { DeckProps } from "@deck.gl/core";
+import { DeckProps, PickingInfo } from "@deck.gl/core";
 import { GoogleMapsOverlay } from "@deck.gl/google-maps";
 import { HeatmapLayer } from "@deck.gl/aggregation-layers";
 import { SnippetT } from "@/types/Snippet";
@@ -32,7 +32,8 @@ export default function MapComponent() {
   const layers = [
     new HeatmapLayer<SnippetT>({
       id: "HeatmapLayer",
-      data: "/test.json",
+      data: "/cleantweet.json",
+	  pickable: true,
       aggregation: "SUM",
       getPosition: (d: SnippetT) => [d.long, d.lat],
       getWeight: (_) => 1, //start with unweighted, every entry gets a 1 weight.
