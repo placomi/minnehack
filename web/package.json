@@ -12,10 +12,14 @@
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.990.0",
     "@aws-sdk/lib-dynamodb": "^3.990.0",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.5.0",
     "dockerode": "^4.0.9",
+    "framer-motion": "^12.34.0",
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "three": "^0.182.0",
     "zod": "^4.3.6"
   },
   "devDependencies": {
