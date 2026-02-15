@@ -2,7 +2,6 @@ package-lock.json
 node_modules
 .env*
 __pycache__/
-
-
-.next
+.DS_STORE
+.next/
 venv/

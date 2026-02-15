@@ -20,7 +20,8 @@ export const Snippet = z.object({
   verified_at: z.string().optional(),
   lat: z.number(),                //
   long: z.number(),               //
-  radius: z.number(),             
+  link: z.string().optional(),    //
+  radius: z.number(),
   tags: z.string().array()        //
 });
 

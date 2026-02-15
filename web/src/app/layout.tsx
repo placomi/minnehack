@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+// import PortalScene from "@/components/PortalScene";
+// import CursorHandler from "@/components/CursorHandler";
+// import { PortalProvider } from "@/context/PortalContext";
+import Navbar from "@/components/Navbar";
+// import { ThemeProvider } from "@/context/ThemeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,11 +29,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
+      {/* <ThemeProvider> */}
+        <body className="antialiased">
+          <div className="text-foreground min-h-screen font-serif flex flex-col justify-between">
+            <Navbar />
+            <div className="h-8"/>
+              {/* <PortalProvider> */}
+                {/* <CursorHandler> */}
+                  {/* <PortalScene /> */}
+                  <main>{children}</main>
+                {/* </CursorHandler> */}
+              {/* </PortalProvider> */}
+            <div className="h-24"/>
+          </div>
+        </body>
+      {/* </ThemeProvider> */}
     </html>
   );
 }
