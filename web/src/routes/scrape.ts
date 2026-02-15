@@ -1,7 +1,9 @@
 import SnippetRepository from "@/services/SnippetRepository";
-import { Snippet } from "@/types/Snippet";
+import { Snippet, type SnippetT } from "@/types/Snippet";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
+
+import ngeohash from "ngeohash";
 
 const Snippets = z.array(Snippet);
 
@@ -17,8 +19,19 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const snippets: SnippetT[] = parseResult.data.map((snippet) => {
+      const { geohash, ...rest } = snippet;
+
+      const computedGeohash = ngeohash.encode(snippet.lat, snippet.long);
+
+      return {
+        ...rest,
+        geohash: computedGeohash,
+      } as SnippetT;
+    });
+
     const createdSnippets = [];
-    for (const snippet of parseResult.data) {
+    for (const snippet of snippets) {
       try {
         const created = await SnippetRepository.createSnippet(snippet);
         createdSnippets.push(created);
