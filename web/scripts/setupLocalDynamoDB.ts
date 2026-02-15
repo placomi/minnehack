@@ -61,6 +61,39 @@ async function createTables() {
     //     },
     //   ],
     },
+    {
+        TableName: "USERS",
+        BillingMode: "PAY_PER_REQUEST",
+
+        AttributeDefinitions: [
+        { AttributeName: "id", AttributeType: "S" },
+        { AttributeName: "phone_number", AttributeType: "S" },
+        { AttributeName: "email", AttributeType: "S" },
+        { AttributeName: "username", AttributeType: "S" },
+        ],
+
+        KeySchema: [
+        { AttributeName: "id", KeyType: "HASH" },
+        ],
+
+        GlobalSecondaryIndexes: [
+        {
+            IndexName: "phone_number-index",
+            KeySchema: [{ AttributeName: "phone_number", KeyType: "HASH" }],
+            Projection: { ProjectionType: "ALL" },
+        },
+        {
+            IndexName: "email-index",
+            KeySchema: [{ AttributeName: "email", KeyType: "HASH" }],
+            Projection: { ProjectionType: "ALL" },
+        },
+        {
+            IndexName: "username-index",
+            KeySchema: [{ AttributeName: "username", KeyType: "HASH" }],
+            Projection: { ProjectionType: "ALL" },
+        },
+        ],
+    },
   ];
 
   for (const t of tables) {
