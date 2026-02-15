@@ -36,14 +36,14 @@ export default function RootLayout({
           <body className="antialiased">
             <div className="text-foreground min-h-screen font-serif flex flex-col justify-between">
               <Navbar />
-              <div className="h-8"/>
+              {/* <div className="h-8"/> */}
                 {/* <PortalProvider> */}
                   {/* <CursorHandler> */}
                     {/* <PortalScene /> */}
                     <main>{children}</main>
                   {/* </CursorHandler> */}
                 {/* </PortalProvider> */}
-              <div className="h-24"/>
+              {/* <div className="h-24"/> */}
             </div>
           </body>
         </ClickedProvider>

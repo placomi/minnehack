@@ -9,11 +9,14 @@ import {
   useMap,
 } from "@vis.gl/react-google-maps";
 
+import { v4 as uuidv4 } from 'uuid';
+
 import { useMemo, useEffect } from "react";
 import { DeckProps, PickingInfo } from "@deck.gl/core";
 import { GoogleMapsOverlay } from "@deck.gl/google-maps";
 import { HeatmapLayer } from "@deck.gl/aggregation-layers";
 import { SnippetT } from "@/types/Snippet";
+import { useClickedSnippets } from "@/context/ClickedContext";
 
 function DeckGLOverlay(props: DeckProps) {
   const map = useMap();
@@ -43,6 +46,8 @@ fetch("/cleantweetfinal.json")
 
 function MapEvents() {
   const map = useMap();
+
+  const { setSnippets } = useClickedSnippets();
 
   useEffect(() => {
     if (!map) return;
@@ -83,10 +88,14 @@ function MapEvents() {
             snippet.latitude >= lowerLat &&
             snippet.latitude <= upperLat
           ) {
-            targetSnippets.push(snippet);
+            // INSERT ID HERE
+            const { ...rest } = snippet;
+            const pushThis = { ...rest, id: uuidv4() }
+            targetSnippets.push(pushThis);
           }
         }
         console.log(targetSnippets);
+        setSnippets(targetSnippets);
       },
     );
   }, [map]);

@@ -10,6 +10,7 @@ export const Snippet = z.object({
   geohash: z.string(),
   timestamp: z.string(),          //
   summary: z.string(),            //
+  location: z.string(),           //
   text: z.string(),               //
   created_by: z.string(),         //
   scraped: z.enum(ScrapedSource), //
@@ -18,8 +19,8 @@ export const Snippet = z.object({
   verified: z.boolean(),          //
   verified_by: z.string().optional(),
   verified_at: z.string().optional(),
-  latitude: z.number(),                //
-  longitude: z.number(),               //
+  latitude: z.number(),           //
+  longitude: z.number(),          //
   link: z.string().optional(),    //
   radius: z.number(),
   tags: z.string().array()        //
