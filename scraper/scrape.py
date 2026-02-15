@@ -9,7 +9,7 @@ df = df[['text']]
 results = []
 
 count = 0
-for tweet in df[5000:6000].itertuples():
+for tweet in df[5500:6000].itertuples():
     count += 1
     print(count)
     result = llm_analysis.llm_analysis(tweet.text)
